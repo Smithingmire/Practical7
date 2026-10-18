@@ -1,0 +1,42 @@
+﻿@model List<Practical7.Models.Feedback>
+
+@{
+    ViewBag.Title = "Feedback List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedback List</h2>
+
+@if (Model.Count == 0)
+{
+    <p>No feedback has been submitted yet.</p>
+}
+else
+{
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Enrollment No</th>
+            <th>Student Name</th>
+            <th>Subject</th>
+            <th>Rating</th>
+            <th>Comments</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EnrollmentNo</td>
+                <td>@item.StudentName</td>
+                <td>@item.Subjects</td>
+                <td>@item.Rating</td>
+                <td>@item.Comments</td>
+            </tr>
+        }
+    </table>
+}
+
+<br />
+
+@Html.ActionLink("Give New Feedback", "Create", "Feedback")
+<br />
+@Html.ActionLink("Back to Home", "Index", "Feedback")

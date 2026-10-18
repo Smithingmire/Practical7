@@ -1,0 +1,18 @@
+﻿@model List<Practical7.Models.Feedback>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedback Management</h2>
+
+<p>Welcome to the Student Feedback Management System.</p>
+
+<p>
+    @Html.ActionLink("Give Feedback", "Create", "Feedback")
+</p>
+
+<p>
+    @Html.ActionLink("View Feedback List", "List", "Feedback")
+</p>

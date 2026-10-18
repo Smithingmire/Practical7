@@ -1,0 +1,71 @@
+﻿@model Practical7.Models.Feedback
+
+@{
+    ViewBag.Title = "Give Feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedback Form</h2>
+
+@Html.Partial("_StudentInfo")
+
+@using (Html.BeginForm("Create", "Feedback", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <table cellpadding="8">
+        <tr>
+            <td>@Html.LabelFor(m => m.EnrollmentNo)</td>
+            <td>
+                @Html.TextBoxFor(m => m.EnrollmentNo)
+                @Html.ValidationMessageFor(m => m.EnrollmentNo, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(m => m.StudentName)</td>
+            <td>
+                @Html.TextBoxFor(m => m.StudentName)
+                @Html.ValidationMessageFor(m => m.StudentName, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(m => m.Subjects)</td>
+            <td>
+                @Html.TextBoxFor(m => m.Subjects)
+                @Html.ValidationMessageFor(m => m.Subjects, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(m => m.Rating)</td>
+            <td>
+                @Html.TextBoxFor(m => m.Rating, new { type = "number", min = "1", max = "5" })
+                @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(m => m.Comments)</td>
+            <td>
+                @Html.TextAreaFor(m => m.Comments, new { rows = "4", cols = "30" })
+                @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+    </table>
+
+    <br />
+
+    <input type="submit" value="Submit Feedback" />
+}
+
+<br />
+
+@Html.ActionLink("Back to Home", "Index", "Feedback")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
